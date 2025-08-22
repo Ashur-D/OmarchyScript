@@ -7,7 +7,7 @@
 # This version is more robust at handling the shell wrapper to prevent duplicates.
 
 # Define the source and destination paths based on the user's request.
-SOURCE_DIR="$HOME/Downloads/pc-collection/OmarchyScript/yazi/"
+SOURCE_DIR="$HOME/github/OmarchyScript/OmarchyScript/yazi/"
 DEST_DIR="$HOME/.config/yazi"
 
 # Check if yazi is installed using the 'pacman' package manager.
@@ -48,6 +48,31 @@ if pacman -Q yazi &>/dev/null; then
   cp "$SOURCE_DIR/yazi.toml" "$DEST_DIR/"
   cp "$KEYMAP_FILE" "$DEST_DIR/keymap.toml" # Always name the destination file keymap.toml for consistency
   echo "Configuration files copied successfully."
+
+  # Copy additional files: package.toml, init.lua, plugins/
+  echo "Checking for additional configuration files..."
+
+  if [ -f "$SOURCE_DIR/package.toml" ]; then
+    cp "$SOURCE_DIR/package.toml" "$DEST_DIR/"
+    echo "Copied package.toml."
+  else
+    echo "Warning: package.toml not found."
+  fi
+
+  if [ -f "$SOURCE_DIR/init.lua" ]; then
+    cp "$SOURCE_DIR/init.lua" "$DEST_DIR/"
+    echo "Copied init.lua."
+  else
+    echo "Warning: init.lua not found."
+  fi
+
+  if [ -d "$SOURCE_DIR/plugins" ]; then
+    rm -rf "$DEST_DIR/plugins" # Remove existing plugins dir
+    cp -r "$SOURCE_DIR/plugins" "$DEST_DIR/"
+    echo "Copied plugins directory."
+  else
+    echo "Warning: plugins directory not found."
+  fi
 
   # --- Add the Yazi shell wrapper to ~/.bashrc ---
   echo "You can now add the shell wrapper function to your ~/.bashrc file to enable directory changing."
