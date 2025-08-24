@@ -13,13 +13,6 @@ LOCAL_CONFIG="$SCRIPT_DIR/hyprlandoverride.conf"
 TARGET_CONFIG="$HOME/.config/hypr/hyprlandoverride.conf"
 MAIN_CONFIG="$HOME/.config/hypr/hyprland.conf"
 
-# Check if the override config file exists
-if [[ ! -f "$LOCAL_CONFIG" ]]; then
-  echo "❌ Override config not found at: $LOCAL_CONFIG"
-  echo "🔍 Please make sure 'hyprlandoverride.conf' exists in the same directory as this script."
-  exit 1
-fi
-
 # Create target config directory if it doesn't exist
 mkdir -p "$(dirname "$TARGET_CONFIG")"
 
