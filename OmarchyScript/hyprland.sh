@@ -8,21 +8,38 @@ if [[ ! "$answer" =~ ^[Yy]$ ]]; then
   exit 0
 fi
 
-# Define paths
-LOCAL_CONFIG="$HOME/Downloads/pc-collection/hyprlandoverride.conf"
+SCRIPT_DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+LOCAL_CONFIG="$SCRIPT_DIR/hyprlandoverride.conf"
 TARGET_CONFIG="$HOME/.config/hypr/hyprlandoverride.conf"
+MAIN_CONFIG="$HOME/.config/hypr/hyprland.conf"
 
-# Check if local config file exists
+# Check if the override config file exists
 if [[ ! -f "$LOCAL_CONFIG" ]]; then
-  echo "❌ Config file not found at: $LOCAL_CONFIG"
+  echo "❌ Override config not found at: $LOCAL_CONFIG"
+  echo "🔍 Please make sure 'hyprlandoverride.conf' exists in the same directory as this script."
   exit 1
 fi
 
-# Ensure the target directory exists
+# Create target config directory if it doesn't exist
 mkdir -p "$(dirname "$TARGET_CONFIG")"
 
-# Append (or create) the override config
+# Apply (overwrite) the override config
 echo "⚙️  Applying Hyprland override config..."
-cat "$LOCAL_CONFIG" >> "$TARGET_CONFIG"
+cp "$LOCAL_CONFIG" "$TARGET_CONFIG"
 
-echo "✅ Hyprland override config applied to $TARGET_CONFIG"
+# Create main Hyprland config if it doesn't exist
+if [[ ! -f "$MAIN_CONFIG" ]]; then
+  echo "⚠️  Main Hyprland config not found at: $MAIN_CONFIG"
+  echo "📝 Creating it and adding source command..."
+  echo "source = $TARGET_CONFIG" >"$MAIN_CONFIG"
+else
+  # Add source line only if it's not already present
+  if ! grep -Fxq "source = $TARGET_CONFIG" "$MAIN_CONFIG"; then
+    echo "⚙️  Adding source command to main Hyprland config..."
+    echo "source = $TARGET_CONFIG" >>"$MAIN_CONFIG"
+  else
+    echo "✅ Source command already exists in main config."
+  fi
+fi
+
+echo "✅ Hyprland config setup complete."

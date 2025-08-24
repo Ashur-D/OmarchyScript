@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # ==========================
 # logs the entire script and saves to downloads
 # ==========================
@@ -23,7 +25,6 @@ fi
 # installs yay if not already installed
 # ==========================
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 chmod +x "$SCRIPT_DIR/yay.sh"
 "$SCRIPT_DIR/yay.sh"
 
@@ -31,7 +32,6 @@ chmod +x "$SCRIPT_DIR/yay.sh"
 # Optional: List of packages and installation
 # ==========================
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 chmod +x "$SCRIPT_DIR/packages.sh"
 "$SCRIPT_DIR/packages.sh"
 
@@ -39,7 +39,6 @@ chmod +x "$SCRIPT_DIR/packages.sh"
 # Optional: Flatpak Support and Sober/Roblox
 # ==========================
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 chmod +x "$SCRIPT_DIR/flatpak.sh"
 "$SCRIPT_DIR/flatpak.sh"
 
@@ -47,7 +46,6 @@ chmod +x "$SCRIPT_DIR/flatpak.sh"
 # Optional: Install custom cursor
 # ==========================
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 chmod +x "$SCRIPT_DIR/cappuccincursor.sh"
 "$SCRIPT_DIR/cappuccincursor.sh"
 
@@ -55,7 +53,6 @@ chmod +x "$SCRIPT_DIR/cappuccincursor.sh"
 # Optional: Install Yazi config
 # ==========================
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 chmod +x "$SCRIPT_DIR/yazi.sh"
 "$SCRIPT_DIR/yazi.sh"
 
@@ -63,7 +60,6 @@ chmod +x "$SCRIPT_DIR/yazi.sh"
 # Optional: Change power plan
 # ==========================
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 chmod +x "$SCRIPT_DIR/power.sh"
 "$SCRIPT_DIR/power.sh"
 
@@ -71,7 +67,6 @@ chmod +x "$SCRIPT_DIR/power.sh"
 # Optional: Apply hyprland config
 # ==========================
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 chmod +x "$SCRIPT_DIR/hyprland.sh"
 "$SCRIPT_DIR/hyprland.sh"
 
