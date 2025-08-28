@@ -11,6 +11,7 @@ packages=(
   catnap-git
   auto-cpufreq
   stormy
+  stacer-bin
 )
 
 echo "Do you want to install all packages automatically without being asked for each? (Y/n): "
