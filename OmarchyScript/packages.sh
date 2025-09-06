@@ -3,15 +3,6 @@ packages=(
   vesktop-bin
   steam
   yazi
-  astroterm
-  asciinema
-  gdu
-  ncdu
-  cbonsai
-  catnap-git
-  auto-cpufreq
-  stormy
-  stacer-bin
   obsidian
   localsend-bin
 )
